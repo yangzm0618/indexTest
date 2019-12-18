@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
 </head>
 
-<body style="background: #E9E9E9;overflow: hidden;">
+<body style="background: #E9E9E9;overflow: hidden;font-size: 0.75rem;">
     <div id="app">
-        <mt-header title="淮安E网打进">
-            <mt-button icon="back" slot="left">返回</mt-button>
+        <mt-header title="淮安E网打尽">
+            <mt-button icon="back" slot="left"></mt-button>
             <mt-button icon="search" slot="right" @click.native="searchMethod()"></mt-button>
         </mt-header>
 
@@ -44,8 +44,8 @@
                 <li v-for="item in list" style="list-style-type: none;display: flex;background: white;
                 border-radius: 6px;
                 margin: 5px;">
-                    <div><img src="img/添加照片-icon.png" style="float:left"></div>
-                    <div>
+                    <div style="margin: auto 0.45rem;"><img src="img/添加照片-icon.png" style="float:left"></div>
+                    <div style="margin: 0.45rem;">
                         <div>任务描述</div>
                         <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
                     </div>
