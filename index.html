@@ -12,64 +12,121 @@
 
 <body style="background: #E9E9E9;overflow: hidden;font-size: 0.75rem;">
     <div id="app">
-        <mt-header title="淮安E网打尽">
-            <mt-button icon="back" slot="left"></mt-button>
-            <mt-button icon="search" slot="right" @click.native="searchMethod()"></mt-button>
-        </mt-header>
-
         <!--搜索框内容-->
-        <div style="margin: 5px;background: white;" v-if="hideSearch">
-            <mt-field placeholder="任务名称"></mt-field>
-            <mt-button icon="search" @click.native="startMethod()" style="width:49%;">开始时间</mt-button>
-            <mt-button icon="search" @click.native="startMethod()" style="width: 49%;">结束时间</mt-button>
-            <mt-datetime-picker :visible.sync="pickerVisible" type="date">
-            </mt-datetime-picker>
-            <div style="text-align: center;padding: 10px;">
-                <mt-button type="primary" icon="search" size="normal" style="background: orange;">查询</mt-button>
-                <mt-button type="danger" icon="cancle" size="normal" style="background: #30C0BE;">取消</mt-button>
+        <!--第一部分-->
+        <div v-if="partOne">
+            <mt-header title="淮安E网打尽">
+                <mt-button icon="back" slot="left"></mt-button>
+                <mt-button icon="search" slot="right" @click.native="searchMethod()"></mt-button>
+            </mt-header>
+            <div style="margin: 5px;background: white;" v-if="hideSearch">
+                <mt-field placeholder="任务名称"></mt-field>
+                <mt-button icon="search" @click.native="startMethod()" style="width:49%;">开始时间</mt-button>
+                <mt-button icon="search" @click.native="startMethod()" style="width: 49%;">结束时间</mt-button>
+                <mt-datetime-picker :visible.sync="pickerVisible" type="date">
+                </mt-datetime-picker>
+                <div style="text-align: center;padding: 10px;">
+                    <mt-button type="primary" icon="search" size="normal" style="background: orange;">查询</mt-button>
+                    <mt-button type="danger" icon="cancle" size="normal" style="background: #30C0BE;">取消</mt-button>
+                </div>
+            </div>
+            <!--主题内容-->
+            <div>
+                <mt-navbar class="page-part" :selected.sync="selected">
+                    <mt-tab-item id="1">全部</mt-tab-item>
+                    <mt-tab-item id="2">待反馈</mt-tab-item>
+                    <mt-tab-item id="3">已反馈</mt-tab-item>
+                </mt-navbar>
+
+
+                <mt-tab-container :active.sync="selected">
+                    <mt-tab-container-item id="1">
+                        <ul style="height: 39rem;overflow: scroll;margin: 0.25rem;
+                    padding-left: 0px;" v-infinite-scroll="loadMore()" infinite-scroll-disabled="loading"
+                            infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
+                            <li v-for="(item,index) in list" style="list-style-type: none;display: flex;background: white;
+                        border-radius: 6px;
+                        margin: 5px;">
+                                <div style="margin: auto 0.45rem;"><img src="img/添加照片-icon.png" style="float:left">
+                                </div>
+                                <div style="margin: 0.45rem;">
+                                    <div>任务描述{{index}}</div>
+                                    <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                                </div>
+                                <div>
+                                    <mt-button type="primary" size="small" @click.native="fankui()"
+                                        style="background: orange;">反馈</mt-button>
+                                    <time class="time">2019-12-13 10:26</time>
+                                </div>
+                            </li>
+                        </ul>
+                    </mt-tab-container-item>
+                    <mt-tab-container-item id="2">
+                        <mt-cell v-for="n in 4" :title="'待反馈 ' + n"></mt-cell>
+                    </mt-tab-container-item>
+                    <mt-tab-container-item id="3">
+                        <mt-cell v-for="n in 6" :title="'已反馈 ' + n"></mt-cell>
+                    </mt-tab-container-item>
+                </mt-tab-container>
             </div>
         </div>
-        <!--主题内容-->
 
-        
-        <div>
-            <mt-navbar class="page-part" :selected.sync="selected">
-                <mt-tab-item id="1">全部</mt-tab-item>
-                <mt-tab-item id="2">待反馈</mt-tab-item>
-                <mt-tab-item id="3">已反馈</mt-tab-item>
-            </mt-navbar>
+        <!--第二部分-->
+        <div v-show="!partOne">
+            <mt-header title="任务反馈">
+                <mt-button icon="back" slot="left" @click.native="bacnToAll()"></mt-button>
+                <!-- <mt-button icon="search" slot="right" @click.native="searchMethod()"></mt-button> -->
+            </mt-header>
 
-            <ul style="height: 39rem;overflow: scroll;margin: 0.25rem;
-            padding-left: 0px;" v-infinite-scroll="loadMore()" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
-                <li v-for="item in list" style="list-style-type: none;display: flex;background: white;
-                border-radius: 6px;
-                margin: 5px;">
-                    <div style="margin: auto 0.45rem;"><img src="img/添加照片-icon.png" style="float:left"></div>
+            <div id="drawMap" style="height: 300px;">
+
+            </div>
+            <ul style="height: 39rem;overflow: scroll;margin: 0.25rem;padding-left: 0px;">
+                <li style="list-style-type: none;background: white;border-radius: 6px;
+            margin: 5px;">
+                    <img src="img/添加照片-icon.png" style="float:left;margin: auto 0.45rem;">
                     <div style="margin: 0.45rem;">
-                        <div>任务描述</div>
-                        <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                        <div>大美丽</div>
+                        <div style="color:#969696;">18856420618</div>
+                        <div style="color:#969696;">江苏省淮安市xxx号</div>
                     </div>
-                    <div>
-                        <mt-button type="primary" size="small" style="background: orange;">反馈</mt-button>
-                    <time class="time">2019-12-13 10:26</time>
+                    <div style="margin: 0.45rem;">
+                        <div>触网信息</div>
+                        <div style="color:#969696;">触网信息触网信息触网信息触网信息触网信息触网信息触网信息触网信息</div>
+                    </div>
+                    <div style="text-align: right;margin-right: 0.25rem;">
+                        <time class="time">2019-12-13 10:26</time>
                     </div>
                 </li>
+                <li style="list-style-type: none;background: white;border-radius: 6px;
+            margin: 5px;">
+                    <div>反馈</div>
+                    <mt-field placeholder="反馈信息内容"></mt-field>
+                    <!-- <mt-field placeholder="反馈结果"></mt-field> -->
+                    <mt-button type="normal" size="large" @click.native="fankuijieguo()">反馈结果</mt-button>
+                    <img src="img/照相机-icon.png" style="float:left;margin: 0.45rem;">
+                    <mt-button size="large" type="primary">提交</mt-button>
+                </li>
             </ul>
-            <!-- <mt-tab-container :active.sync="selected">
-                <mt-tab-container-item id="1">
-                    <mt-cell v-for="n in 4" :title="'全部 ' + n"></mt-cell>
-                </mt-tab-container-item>
-                <mt-tab-container-item id="2">
-                    <mt-cell v-for="n in 4" :title="'待反馈 ' + n"></mt-cell>
-                </mt-tab-container-item>
-                <mt-tab-container-item id="3">
-                    <mt-cell v-for="n in 6" :title="'已反馈 ' + n"></mt-cell>
-                </mt-tab-container-item>
-            </mt-tab-container> -->
-        </div>
+            <mt-actionsheet
+  :actions="actions"
+  :visible.sync="sheetVisible">
+</mt-actionsheet>
 
+            <!-- <ul style="height: 39rem;overflow: scroll;margin: 0.25rem;padding-left: 0px;" >
+            <li  style="list-style-type: none;background: white;border-radius: 6px;
+            margin: 5px;">
+                <div>反馈</div>
+                <mt-field  placeholder="反馈信息内容"></mt-field>
+                <mt-field  placeholder="反馈结果"></mt-field>
+                <img src="img/照相机-icon.png" style="float:left;margin: auto 0.45rem;">
+                <mt-button size="normal">提交</mt-button>
+            </li>
+        </ul> -->
+        </div>
     </div>
 </body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cHvUd52Dq7uv1RiS6zGTRK99Nz2g0Nmt"></script>
 <!-- 先引入 Vue -->
 <script src="https://unpkg.com/vue@1/dist/vue.js"></script>
 <!-- 引入组件库 -->
@@ -83,8 +140,20 @@
                 pickerVisible: false,
                 hideSearch: false,
                 selected: '1',
-                list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15],
-                loading: false
+                list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+                loading: false,
+                partOne: true,
+                actions:[{
+                    "name":'已离开',
+                    method : this.getCamera	// 调用methods中的函数
+                },
+                {
+                    "name":'已抓获'
+                },
+                {
+                    "name":'数据不正确'
+                }],
+                sheetVisible:false
             }
         },
         methods: {
@@ -107,6 +176,31 @@
                     }
                     this.loading = false;
                 }, 1000);
+            },
+            fankui() {
+                this.partOne = false;
+                // 百度地图API功能
+                var map = new BMap.Map("drawMap"); // 创建Map实例33.6162703584,119.0224348454
+                map.centerAndZoom(new BMap.Point(119.022, 33.616), 11); // 初始化地图,设置中心点坐标和地图级别
+                //添加地图类型控件
+                map.addControl(new BMap.MapTypeControl({
+                    mapTypes: [
+                        BMAP_NORMAL_MAP,
+                        BMAP_HYBRID_MAP
+                    ]
+                }));
+                map.setCurrentCity("淮安"); // 设置地图显示的城市 此项是必须设置的
+                map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+            },
+            //到首页
+            bacnToAll() {
+              this.partOne=true;
+            },
+            fankuijieguo(){
+            this.sheetVisible=true;
+            },
+            getCamera(){
+                
             }
         }
     })
