@@ -1,103 +1,121 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
-  <!-- 引入样式 -->
-  <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
 </head>
-<body style="background: #E9E9E9;">
-  <div id="app">
-    <mt-header title="淮安E网打进">
-        <mt-button icon="back" slot="left">返回</mt-button>
-        <mt-button icon="search" slot="right" @click.native="searchMethod()"></mt-button>
-      </mt-header>
 
-      <!--搜索框内容-->
-      <div style="margin: 5px;" v-if="hideSearch">
-        <mt-field  placeholder="任务名称"></mt-field>
-        <mt-button icon="search"  @click.native="startMethod()" style="width:49%;">开始时间</mt-button>
-        <mt-button icon="search"  @click.native="startMethod()" style="width: 49%;">结束时间</mt-button>
-        <mt-datetime-picker
-        :visible.sync="pickerVisible"
-        type="date">
-      </mt-datetime-picker>
-      <div style="text-align: center;margin-top: 10px;">
-          <mt-button type="primary">primary</mt-button>
-          <mt-button type="danger">danger</mt-button>
-      </div>
-      </div>
-      <!--主题内容-->
+<body style="background: #E9E9E9;overflow: hidden;">
+    <div id="app">
+        <mt-header title="淮安E网打进">
+            <mt-button icon="back" slot="left">返回</mt-button>
+            <mt-button icon="search" slot="right" @click.native="searchMethod()"></mt-button>
+        </mt-header>
 
-      <div>
-        <mt-navbar class="page-part" :selected.sync="selected">
-            <mt-tab-item id="1">全部</mt-tab-item>
-            <mt-tab-item id="2">待反馈</mt-tab-item>
-            <mt-tab-item id="3">已反馈</mt-tab-item>
-          </mt-navbar>
-          
-          <!-- tab-container -->
-          <mt-tab-container :active.sync="selected">
-            <mt-tab-container-item id="1">
-                <mt-cell v-for="n in 4" :title="'全部 ' + n"></mt-cell>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="2">
-              <mt-cell v-for="n in 4" :title="'待反馈 ' + n"></mt-cell>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="3">
-              <mt-cell v-for="n in 6" :title="'已反馈 ' + n"></mt-cell>
-            </mt-tab-container-item>
-          </mt-tab-container>
-      </div>
-      
-  </div>
+        <!--搜索框内容-->
+        <div style="margin: 5px;background: white;" v-if="hideSearch">
+            <mt-field placeholder="任务名称"></mt-field>
+            <mt-button icon="search" @click.native="startMethod()" style="width:49%;">开始时间</mt-button>
+            <mt-button icon="search" @click.native="startMethod()" style="width: 49%;">结束时间</mt-button>
+            <mt-datetime-picker :visible.sync="pickerVisible" type="date">
+            </mt-datetime-picker>
+            <div style="text-align: center;padding: 10px;">
+                <mt-button type="primary" icon="search" size="normal" style="background: orange;">查询</mt-button>
+                <mt-button type="danger" icon="cancle" size="normal" style="background: #30C0BE;">取消</mt-button>
+            </div>
+        </div>
+        <!--主题内容-->
+
+        
+        <div>
+            <mt-navbar class="page-part" :selected.sync="selected">
+                <mt-tab-item id="1">全部</mt-tab-item>
+                <mt-tab-item id="2">待反馈</mt-tab-item>
+                <mt-tab-item id="3">已反馈</mt-tab-item>
+            </mt-navbar>
+
+            <ul style="height: 39rem;overflow: scroll;margin: 0.25rem;
+            padding-left: 0px;" v-infinite-scroll="loadMore()" infinite-scroll-disabled="loading" infinite-scroll-distance="10" infinite-scroll-immediate-check="false">
+                <li v-for="item in list" style="list-style-type: none;display: flex;background: white;
+                border-radius: 6px;
+                margin: 5px;">
+                    <div><img src="img/民警位置.png" style="float:left"></div>
+                    <div>
+                        <div>任务描述</div>
+                        <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                    </div>
+                    <div>
+                        <mt-button type="primary" size="small" style="background: orange;">反馈</mt-button>
+                    <time class="time">2019-12-13 10:26</time>
+                    </div>
+                </li>
+            </ul>
+            <!-- <mt-tab-container :active.sync="selected">
+                <mt-tab-container-item id="1">
+                    <mt-cell v-for="n in 4" :title="'全部 ' + n"></mt-cell>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="2">
+                    <mt-cell v-for="n in 4" :title="'待反馈 ' + n"></mt-cell>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="3">
+                    <mt-cell v-for="n in 6" :title="'已反馈 ' + n"></mt-cell>
+                </mt-tab-container-item>
+            </mt-tab-container> -->
+        </div>
+
+    </div>
 </body>
-  <!-- 先引入 Vue -->
-  <script src="https://unpkg.com/vue@1/dist/vue.js"></script>
-  <!-- 引入组件库 -->
-  <script src="https://unpkg.com/mint-ui@1/lib/index.js"></script>
-  <script>
+<!-- 先引入 Vue -->
+<script src="https://unpkg.com/vue@1/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/mint-ui@1/lib/index.js"></script>
+<script>
     new Vue({
-      el: '#app',
-      data(){
-     return {
+        el: '#app',
+        data() {
+            return {
 
-        pickerVisible:false,
-        hideSearch:false,
-        selected:'1',
-        list:[1,2,3,4,5,6,7,8,9,10]
-       }
-      },
-      methods: {
-        handleClick: function() {
-          this.$toast('Hello world!')
+                pickerVisible: false,
+                hideSearch: false,
+                selected: '1',
+                list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15],
+                loading: false
+            }
         },
-        startMethod(){
-            debugger
-          this.pickerVisible=true;
-        },
-        searchMethod(){
-            this.hideSearch=!this.hideSearch;
-        },
-        loadMore() {
-  this.loading = true;
-  setTimeout(() => {
-    let last = this.list[this.list.length - 1];
-    for (let i = 1; i <= 10; i++) {
-      this.list.push(last + i);
-    }
-    this.loading = false;
-  }, 1000);
-}
-      }
+        methods: {
+            handleClick: function () {
+                this.$toast('Hello world!')
+            },
+            startMethod() {
+                debugger
+                this.pickerVisible = true;
+            },
+            searchMethod() {
+                this.hideSearch = !this.hideSearch;
+            },
+            loadMore() {
+                this.loading = true;
+                setTimeout(() => {
+                    var last = this.list[this.list.length - 1];
+                    for (var i = 1; i <= 10; i++) {
+                        this.list.push(last + i);
+                    }
+                    this.loading = false;
+                }, 1000);
+            }
+        }
     })
-  </script>
-  <style>
-  .mint-cell{
-    margin-bottom: 5px;
-    border: 1px solid #F2F2F2;
-  }
-  </style>
+</script>
+<style>
+    .mint-cell {
+        margin-bottom: 5px;
+        border: 1px solid #F2F2F2;
+    }
+</style>
+
 </html>
