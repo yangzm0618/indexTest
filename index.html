@@ -33,6 +33,9 @@ body{
   font-size:15px;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  overflow-x:hidden;
 }
 
 /* ---------- top bar ---------- */
@@ -43,7 +46,7 @@ body{
   border-bottom:1px solid var(--rule);
 }
 .topbar .inner{
-  max-width:1320px;margin:0 auto;padding:10px 24px;
+  max-width:1280px;margin:0 auto;padding:10px 24px;
   display:flex;align-items:center;gap:18px;flex-wrap:wrap;
 }
 .topbar .brand{font-weight:800;letter-spacing:.02em}
@@ -56,7 +59,7 @@ body{
 .topbar nav a:hover{color:var(--accent);border-color:var(--rule);background:var(--bg2)}
 
 /* ---------- layout ---------- */
-.wrap{max-width:1320px;margin:0 auto;padding:0 24px 72px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px 72px}
 
 header.cover{padding:44px 0 28px}
 header.cover .eyebrow{
@@ -69,9 +72,7 @@ header.cover h1{
 }
 header.cover h1 em{font-style:normal;color:var(--accent)}
 header.cover p.lede{color:var(--muted);max-width:820px;margin:0 0 18px;font-size:15px}
-.meta-strip{
-  display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted);
-}
+.meta-strip{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted)}
 .meta-strip span{
   background:var(--bg2);border:1px solid var(--rule);border-radius:999px;
   padding:5px 12px;
@@ -92,7 +93,7 @@ header.cover p.lede{color:var(--muted);max-width:820px;margin:0 0 18px;font-size
 .stat .v.acc{color:var(--accent)}
 
 /* ---------- section ---------- */
-section.day{margin-top:46px}
+section.day{margin-top:42px}
 .day-head{
   display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;
   padding-bottom:12px;border-bottom:2px solid var(--accent);
@@ -104,56 +105,88 @@ section.day{margin-top:46px}
   background:#e8f3ec;border:1px solid #cfe6d9;border-radius:999px;padding:4px 12px;
 }
 .note{
-  margin:14px 0 18px;font-size:13px;color:var(--muted);
+  margin:14px 0 16px;font-size:13px;color:var(--muted);
   background:var(--bg2);border:1px solid var(--rule);border-left:3px solid var(--accent2);
   border-radius:0 10px 10px 0;padding:10px 14px;
 }
 .note b{color:var(--ink)}
 
 h3.block{
-  font-size:15px;font-weight:800;margin:26px 0 10px;
+  font-size:15px;font-weight:800;margin:30px 0 12px;
   display:flex;align-items:center;gap:9px;
 }
-h3.block::before{
-  content:"";width:4px;height:16px;border-radius:2px;background:var(--accent);
-}
+h3.block::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--accent)}
 h3.block .hint{font-weight:500;font-size:12.5px;color:var(--muted)}
 
-/* ---------- tables ---------- */
-.table-wrap{
-  overflow-x:auto;overflow-y:auto;max-height:660px;
-  border:1px solid var(--rule);border-radius:12px;background:var(--bg2);
-  box-shadow:var(--shadow);
+/* ---------- match card ---------- */
+.match{
+  background:var(--bg2);border:1px solid var(--rule);border-radius:14px;
+  padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);
 }
-table.data{
-  border-collapse:separate;border-spacing:0;width:100%;
-  font-size:13px;min-width:1180px;
+.m-head{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding-bottom:11px;border-bottom:1px solid var(--rule);
 }
-table.data thead th{
-  position:sticky;top:0;z-index:3;
-  background:#eaf2ec;color:#22392e;
-  font-weight:700;font-size:11.5px;letter-spacing:.04em;
-  text-align:left;padding:10px 12px;white-space:nowrap;
-  border-bottom:1px solid var(--rule);
+.m-no{
+  font-family:var(--font-mono);font-size:12px;font-weight:800;color:#fff;
+  background:var(--accent);border-radius:7px;padding:2px 8px;letter-spacing:.02em;
 }
-table.data tbody td{
-  padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;
+.m-title{margin:0;font-size:16px;font-weight:800;line-height:1.35;flex:1 1 auto;min-width:0}
+.m-time{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+.m-sec{margin-top:13px}
+.m-sec-t{
+  display:flex;align-items:center;gap:7px;
+  font-size:11.5px;font-weight:800;letter-spacing:.07em;color:var(--accent);
+  margin-bottom:5px;
 }
-table.data tbody tr:last-child td{border-bottom:none}
-table.data tbody tr:nth-child(even){background:#fafbf9}
-table.data tbody tr:hover{background:#f1f7f3}
-td.no{font-family:var(--font-mono);font-weight:700;color:var(--accent);white-space:nowrap}
-td.match{font-weight:700;min-width:190px}
-td.match .lg{display:block;font-weight:500;font-size:11px;color:var(--muted)}
-td.num{font-family:var(--font-mono);white-space:nowrap;font-size:12.5px}
-td.num .lead{font-weight:700}
-td.scores{font-family:var(--font-mono);font-size:12px;min-width:230px}
-td.scores .s1{display:block;white-space:nowrap}
-td.time{font-family:var(--font-mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.m-sec-t::before{content:"";width:3px;height:12px;border-radius:2px;background:var(--accent)}
+
+.m-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px;margin:0}
+.m-grid>div{
+  display:flex;gap:8px;align-items:baseline;min-width:0;
+  padding:6px 0;border-bottom:1px dashed var(--rule);
+}
+.m-grid>div.wide{grid-column:1 / -1}
+.m-grid dt{
+  flex:0 0 122px;color:var(--muted);font-size:11.5px;font-weight:700;
+  line-height:1.7;margin:0;
+}
+.m-grid dd{margin:0;font-size:13px;min-width:0;overflow-wrap:anywhere}
+.mono{font-family:var(--font-mono);font-size:12.5px}
+.m-grid>.last-row{border-bottom:0}
+
+.m-list>div{display:flex;gap:9px;min-width:0;padding:6px 0;border-bottom:1px dashed var(--rule)}
+.m-list>div:last-child{border-bottom:0}
+.m-list dt{
+  flex:0 0 82px;color:var(--muted);font-size:11.5px;font-weight:700;
+  line-height:1.7;margin:0;
+}
+.m-list dd{margin:0;font-size:12.8px;color:#33403a;min-width:0;overflow-wrap:anywhere}
+.m-list dd .sub{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+
+.m-concl{
+  margin-top:14px;background:#f5faf7;border:1px solid #d9e9df;
+  border-radius:10px;padding:11px 13px;
+}
+.m-concl .pt{font-size:12.8px;font-weight:700;color:var(--ink);margin:0 0 6px;line-height:1.6}
+.m-concl .pt::before{
+  content:"要点";display:inline-block;font-size:10.5px;font-weight:800;
+  letter-spacing:.06em;color:#fff;background:var(--accent);
+  border-radius:5px;padding:1px 6px;margin-right:7px;vertical-align:1px;
+}
+.m-concl .detail{margin:0;font-size:12.8px;color:#2b3a33;line-height:1.65}
+.m-concl .detail::before{
+  content:"结论";display:inline-block;font-size:10.5px;font-weight:800;
+  letter-spacing:.06em;color:var(--accent2);background:#fbeee0;
+  border:1px solid #f0dcc2;border-radius:5px;padding:1px 6px;
+  margin-right:7px;vertical-align:1px;
+}
+.m-concl .detail b{color:var(--accent2)}
 
 /* tags */
 .tag{
-  display:inline-block;font-size:11.5px;font-weight:700;line-height:1.5;
+  display:inline-block;font-size:11.5px;font-weight:700;line-height:1.6;
   padding:2px 9px;border-radius:999px;white-space:nowrap;border:1px solid transparent;
 }
 .t-ok{color:#0b6b46;background:#e4f2ea;border-color:#c6e3d4}
@@ -162,23 +195,13 @@ td.time{font-family:var(--font-mono);font-size:12px;color:var(--muted);white-spa
 
 /* probability bar */
 .bar{
-  display:block;width:74px;height:5px;border-radius:3px;background:#e9eeea;
-  margin-top:5px;overflow:hidden;
+  display:inline-block;width:110px;height:5px;border-radius:3px;background:#e9eeea;
+  margin:0 0 0 8px;vertical-align:middle;overflow:hidden;
 }
 .bar i{display:block;height:100%;border-radius:3px;background:var(--accent)}
 .bar.mid i{background:#4e9a6f}
 .bar.low i{background:var(--accent2)}
 .bar.low2 i{background:#8a9aa0}
-
-/* AI analysis table */
-table.ai{min-width:1080px}
-table.ai td.txt{font-size:12.6px;line-height:1.62;color:#33403a;min-width:230px}
-table.ai td.txt .sub{display:block;color:var(--muted);font-size:12px;margin-top:3px}
-table.ai td.concl{font-weight:600;color:var(--ink);min-width:250px;font-size:12.6px;line-height:1.62}
-table.ai b{color:var(--accent2)}
-
-table.summary{min-width:760px}
-table.summary td.note-cell{font-size:12.6px;color:#33403a}
 
 /* key list */
 .keystats{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:18px}
@@ -194,11 +217,11 @@ table.summary td.note-cell{font-size:12.6px;color:#33403a}
 .kcard em{font-style:normal;color:var(--accent);font-weight:700}
 
 /* legend */
-.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 12px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 16px}
 .legend .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
 
 footer{
-  max-width:1320px;margin:0 auto;padding:26px 24px 60px;
+  max-width:1280px;margin:0 auto;padding:26px 24px 60px;
   border-top:1px solid var(--rule);color:var(--muted);font-size:12.5px;
 }
 footer .sources{margin-top:6px}
@@ -214,17 +237,53 @@ footer .sources a{word-break:break-all}
   .keystats{grid-template-columns:1fr}
 }
 @media (max-width:768px){
-  .wrap{padding:0 14px 56px}
-  .topbar .inner{padding:10px 14px}
-  .stat-grid{grid-template-columns:1fr}
-  table.data{min-width:1100px}
-  table.ai{min-width:1000px}
-  header.cover{padding:28px 0 18px}
+  .wrap{padding:0 12px 48px}
+  .topbar .inner{padding:8px 12px;gap:8px}
+  .topbar .brand{font-size:14px;line-height:1.3}
+  .topbar .brand small{display:none}
+  .topbar nav{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:4px;-webkit-overflow-scrolling:touch}
+  .topbar nav a{font-size:12px;padding:4px 10px;white-space:nowrap;flex:0 0 auto}
+  header.cover{padding:24px 0 16px}
+  header.cover h1{font-size:24px}
+  header.cover p.lede{font-size:14px}
+  .meta-strip{gap:6px;font-size:12px}
+  .meta-strip span{padding:4px 10px}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 6px}
+  .stat{padding:12px 14px}
+  .stat .v{font-size:21px}
+  .stat .k{font-size:10.5px;letter-spacing:.04em}
+  section.day{margin-top:28px}
+  .day-head{flex-direction:column;align-items:flex-start;gap:6px;padding-bottom:10px}
+  .day-head h2{font-size:19px}
+  .day-head .sub{font-size:12.5px}
+  .day-head .pill{margin-left:0}
+  .note{margin:10px 0 14px;font-size:12.5px;padding:9px 12px}
+  h3.block{font-size:14px;margin:22px 0 10px}
+  h3.block .hint{display:none}
+  .legend{gap:10px;font-size:11.5px}
+
+  /* 单场卡片：窄屏改为单列 */
+  .match{padding:13px 13px;border-radius:12px;margin-bottom:11px}
+  .m-head{gap:8px;padding-bottom:9px}
+  .m-title{font-size:15px;flex:1 1 100%;order:3}
+  .m-no{order:1}
+  .m-head .tag{order:2;margin-left:auto}
+  .m-time{order:4;margin-left:0;flex:1 1 100%}
+  .m-grid{grid-template-columns:1fr}
+  .m-grid>div.wide{grid-column:auto}
+  .m-grid dt{flex:0 0 108px;font-size:11px}
+  .m-list>div{flex-direction:column;gap:1px}
+  .m-list dt{flex:0 0 auto;font-size:11px}
+  .bar{width:90px}
+  .keystats{gap:10px;margin-top:14px}
+  .kcard{padding:13px 14px}
+  .kcard ul{font-size:12.5px;padding-left:16px}
+  footer{padding:20px 12px 44px}
 }
 @media print{
   .topbar{display:none}
-  .table-wrap{max-height:none;overflow:visible;box-shadow:none}
   body{background:#fff}
+  .match{break-inside:avoid;box-shadow:none}
   section.day{page-break-inside:avoid}
 }
 </style>
@@ -236,8 +295,7 @@ footer .sources a{word-break:break-all}
     <div class="brand">竞彩足球赔率与盘口分析<small>POISSON MODEL · ODDS DE-VIG · HANDICAP REVIEW</small></div>
     <nav>
       <a href="#overview">概览</a>
-      <a href="#monday">周一 261019</a>
-      <a href="#tuesday">周二 261020</a>
+      <a href="#matches">单场数据</a>
       <a href="#sources">数据来源</a>
     </nav>
   </div>
@@ -249,12 +307,11 @@ footer .sources a{word-break:break-all}
   <div class="eyebrow">享受比赛 · 理性分析</div>
   <h1>竞彩足球赔率与盘口分析<br><em> 周二 261020</em></h1>
   <p class="lede">
-    对周一共 9 场比赛的官方赔率、让球盘、亚洲盘进行整理，并用「赔率隐含概率（去水）」与「泊松分布模型」双口径交叉验证，
-    结合近况、交手记录（H2H）与盘口水位判断定价是否合理。
+    对周二共 9 场比赛的官方赔率、让球盘、亚洲盘进行整理，并用「赔率隐含概率（去水）」与「泊松分布模型」双口径交叉验证，
+    结合近况、交手记录（H2H）与盘口水位判断定价是否合理。每场比赛的赔率、概率、AI 分析与结论已整合在同一个区块中。
   </p>
   <div class="meta-strip">
     <span>数据来源：中国竞彩官网 lottery.gov.cn</span>
-    <span>周一 奖金更新 2026-10-18 22:52:04</span>
     <span>周二 奖金更新 2026-10-19 20:42:03</span>
     <span>胜/平/负 = 主胜 / 平局 / 客胜</span>
     <span>让球盘 “−” 主让客 · “+” 客让主</span>
@@ -263,318 +320,394 @@ footer .sources a{word-break:break-all}
   <div class="stat-grid">
     <div class="stat">
       <div class="k">比赛总场次</div>
-      <div class="v">17</div>
-      <div class="s">周一 8 场 + 周二 9 场</div>
+      <div class="v">9</div>
+      <div class="s">周二 261020 · 全部欧冠</div>
     </div>
     <div class="stat">
       <div class="k">盘口判定分布</div>
-      <div class="v acc">7 · 4 · 6</div>
-      <div class="s">合理 7 · 略偏 4 · 偏深/风险 6</div>
+      <div class="v acc">6 · 1 · 2</div>
+      <div class="s">合理 6 · 略偏 1 · 偏深/风险 2</div>
     </div>
     <div class="stat">
       <div class="k">最高进球期望</div>
       <div class="v">4.02</div>
-      <div class="s">周二 006 巴黎圣曼 vs 巴萨（球）</div>
+      <div class="s">006 巴黎圣曼 vs 巴萨（球）</div>
     </div>
     <div class="stat">
       <div class="k">最低大 2.5 球</div>
-      <div class="v">28.3%</div>
-      <div class="s">周一 006 赫塔费 vs 巴列卡诺</div>
+      <div class="v">54.8%</div>
+      <div class="s">001 费内巴切 vs 斯拉维亚</div>
     </div>
   </div>
 </header>
 
-
-<!-- ===================== 周二 ===================== -->
-<section class="day" id="tuesday">
+<section class="day" id="matches">
   <div class="day-head">
-    <h2>周二 · 2026-10-20</h2>
-    <div class="sub">编号日期 261020 · 9 场 · 全部为 2026-27 欧冠联赛阶段，北京时间 10-21 凌晨开赛</div>
+    <h2>单场数据 · 周二 2026-10-20</h2>
+    <div class="sub">编号日期 261020 · 9 场 · 2026-27 欧冠联赛阶段，北京时间 10-21 凌晨开赛</div>
     <div class="pill">9 场</div>
   </div>
 
   <div class="note">
-    <b>说明：</b>括号内为竞彩标注的欧冠排名。本期编号跳过 <b>003</b>。
+    <b>说明：</b>括号内为竞彩标注的欧冠排名，本期编号跳过 <b>003</b>。
     <b>005、008 竞彩胜平负未开售</b>，改用欧洲平均赔率（欧均）补全，两场仅可打让球盘，其“支持率”为让球盘支持率。
     亚洲盘格式为「盘口（主水位 / 客水位）」。
   </div>
 
   <div class="legend">
     <span><i class="dot" style="background:#0d7a4f"></i>合理</span>
-    <span><i class="dot" style="background:#a8620b"></i>略有偏差（略偏 / 偏浅 / 偏保守）</span>
+    <span><i class="dot" style="background:#a8620b"></i>略有偏差（略偏 / 偏保守）</span>
     <span><i class="dot" style="background:#b3261e"></i>盘口偏深（风险提示）</span>
   </div>
 
-  <h3 class="block">赔率与概率一览 <span class="hint">隐含概率与泊松模型概率对照</span></h3>
-  <div class="table-wrap">
-    <table class="data">
-      <thead>
-        <tr>
-          <th>编号</th>
-          <th>对阵</th>
-          <th>判定</th>
-          <th>开赛</th>
-          <th>胜平负</th>
-          <th>让球盘</th>
-          <th>亚洲盘</th>
-          <th>支持率<br>胜/平/负</th>
-          <th>隐含概率<br>胜/平/负</th>
-          <th>泊松概率<br>胜/平/负</th>
-          <th>最可能比分（Top 5）</th>
-          <th>大 2.5 球</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="no">001</td>
-          <td class="match">费内巴切(欧冠28) vs 斯拉维亚(欧冠31)</td>
-          <td><span class="tag t-watch">合理 · 略偏深</span></td>
-          <td class="time">10-21 00:45</td>
-          <td class="num">1.50 / 4.00 / 4.70</td>
-          <td class="num">−1：2.49 / 3.60 / 2.22</td>
-          <td class="num">一球（2.02 / 1.82）</td>
-          <td class="num">88 / 6 / 6</td>
-          <td class="num">59.0 / 22.1 / 18.9</td>
-          <td class="num">59.0 / 22.1 / 18.9</td>
-          <td class="scores"><span class="s1">1:0 10.7% · 1:1 10.5%</span><span class="s1">2:0 10.2% · 2:1 9.9% · 3:0 6.4%</span></td>
-          <td class="num"><span class="lead">54.8%</span><span class="bar low"><i style="width:54.8%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">002</td>
-          <td class="match">萨巴赫(欧冠22) vs 多特蒙德(欧冠18)</td>
-          <td><span class="tag t-risk">客队让球偏深</span></td>
-          <td class="time">10-21 00:45</td>
-          <td class="num">8.05 / 5.60 / 1.21</td>
-          <td class="num">+2：1.90 / 4.17 / 2.75</td>
-          <td class="num">受球半/两球（1.90 / 1.95）</td>
-          <td class="num">11 / 5 / 84</td>
-          <td class="num">11.0 / 15.8 / 73.2</td>
-          <td class="num">10.9 / 15.9 / 73.2</td>
-          <td class="scores"><span class="s1">0:2 10.6% · 1:2 9.3%</span><span class="s1">0:3 9.0% · 0:1 8.4% · 1:3 7.8%</span></td>
-          <td class="num"><span class="lead">66.0%</span><span class="bar mid"><i style="width:66.0%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">004</td>
-          <td class="match">那不勒斯(欧冠32) vs 博德闪耀(欧冠24)</td>
-          <td><span class="tag t-risk">主队让球偏深</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">1.48 / 4.23 / 4.60</td>
-          <td class="num">−1：2.40 / 3.72 / 2.25</td>
-          <td class="num">一球（2.02 / 1.82）</td>
-          <td class="num">49 / 9 / 42</td>
-          <td class="num">59.8 / 20.9 / 19.2</td>
-          <td class="num">59.9 / 20.9 / 19.2</td>
-          <td class="scores"><span class="s1">2:1 9.9% · 1:1 9.7%</span><span class="s1">2:0 9.2% · 1:0 9.0% · 3:1 6.8%</span></td>
-          <td class="num"><span class="lead">60.4%</span><span class="bar mid"><i style="width:60.4%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">005</td>
-          <td class="match">罗马(欧冠25) vs 布拉迪斯(欧冠36)</td>
-          <td><span class="tag t-ok">合理</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">未开售 · 欧均 1.15 / 8.51 / 16.18</td>
-          <td class="num">−2：1.86 / 4.40 / 2.75</td>
-          <td class="num">两球半（2.00 / 1.85）</td>
-          <td class="num">72 / 19 / 9<br><span style="color:#6d7a73;font-size:11px">（让球盘）</span></td>
-          <td class="num">82.9 / 11.2 / 5.9</td>
-          <td class="num">82.9 / 11.3 / 5.8</td>
-          <td class="scores"><span class="s1">2:0 11.2% · 3:0 11.1%</span><span class="s1">4:0 8.3% · 2:1 7.8% · 3:1 7.8%</span></td>
-          <td class="num"><span class="lead">71.1%</span><span class="bar"><i style="width:71.1%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">006</td>
-          <td class="match">巴黎圣曼(欧冠1) vs 巴萨(欧冠2)</td>
-          <td><span class="tag t-ok">合理</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">2.26 / 4.30 / 2.20</td>
-          <td class="num">+1：1.50 / 4.65 / 4.05</td>
-          <td class="num">平手（1.92 / 1.92）</td>
-          <td class="num">35 / 17 / 48</td>
-          <td class="num">39.2 / 20.6 / 40.2</td>
-          <td class="num">39.2 / 20.6 / 40.2</td>
-          <td class="scores"><span class="s1">1:2 7.3% · 2:2 7.3%</span><span class="s1">1:1 7.2% · 2:1 7.2% · 1:3 4.9%</span></td>
-          <td class="num"><span class="lead">76.6%</span><span class="bar"><i style="width:76.6%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">007</td>
-          <td class="match">利物浦(欧冠5) vs 比利亚雷(欧冠14)</td>
-          <td><span class="tag t-ok">合理</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">1.34 / 4.67 / 5.90</td>
-          <td class="num">−1：2.04 / 3.78 / 2.67</td>
-          <td class="num">一球（1.85 / 2.00）</td>
-          <td class="num">88 / 6 / 6</td>
-          <td class="num">66.0 / 19.0 / 15.0</td>
-          <td class="num">66.2 / 18.8 / 15.0</td>
-          <td class="scores"><span class="s1">2:0 10.1% · 2:1 9.8%</span><span class="s1">1:0 8.9% · 1:1 8.7% · 3:0 7.5%</span></td>
-          <td class="num"><span class="lead">62.5%</span><span class="bar mid"><i style="width:62.5%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">008</td>
-          <td class="match">曼城(欧冠17) vs 雅典AEK(欧冠20)</td>
-          <td><span class="tag t-ok">合理 · 让球偏保守</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">未开售 · 欧均 1.11 / 10.00 / 21.05</td>
-          <td class="num">−2：1.60 / 4.40 / 3.61</td>
-          <td class="num">两球半/三球（2.00 / 1.85）</td>
-          <td class="num">79 / 14 / 7<br><span style="color:#6d7a73;font-size:11px">（让球盘）</span></td>
-          <td class="num">85.9 / 9.5 / 4.5</td>
-          <td class="num">85.9 / 9.5 / 4.6</td>
-          <td class="scores"><span class="s1">3:0 11.5% · 2:0 10.8%</span><span class="s1">4:0 9.2% · 3:1 7.6% · 2:1 7.1%</span></td>
-          <td class="num"><span class="lead">74.0%</span><span class="bar"><i style="width:74.0%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">009</td>
-          <td class="match">斯图加特(欧冠4) vs 马竞(欧冠15)</td>
-          <td><span class="tag t-ok">合理</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">3.00 / 3.70 / 1.90</td>
-          <td class="num">+1：1.68 / 3.90 / 3.60</td>
-          <td class="num">受平手/半球（2.02 / 1.82）</td>
-          <td class="num">8 / 10 / 82</td>
-          <td class="num">29.5 / 23.9 / 46.6</td>
-          <td class="num">29.4 / 23.8 / 46.9</td>
-          <td class="scores"><span class="s1">1:1 11.0% · 1:2 9.4%</span><span class="s1">0:1 8.5% · 0:2 7.2% · 2:1 7.2%</span></td>
-          <td class="num"><span class="lead">57.7%</span><span class="bar mid"><i style="width:57.7%"></i></span></td>
-        </tr>
-        <tr>
-          <td class="no">010</td>
-          <td class="match">波尔图(欧冠30) vs 埃因霍温(欧冠26)</td>
-          <td><span class="tag t-ok">合理</span></td>
-          <td class="time">10-21 03:00</td>
-          <td class="num">1.43 / 4.35 / 5.00</td>
-          <td class="num">−1：2.25 / 3.70 / 2.42</td>
-          <td class="num">一球（1.87 / 1.97）</td>
-          <td class="num">84 / 6 / 10</td>
-          <td class="num">61.9 / 20.4 / 17.7</td>
-          <td class="num">62.1 / 20.3 / 17.6</td>
-          <td class="scores"><span class="s1">2:1 9.9% · 2:0 9.7%</span><span class="s1">1:1 9.5% · 1:0 9.2% · 3:1 7.0%</span></td>
-          <td class="num"><span class="lead">60.4%</span><span class="bar mid"><i style="width:60.4%"></i></span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- 001 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">001</span>
+      <h4 class="m-title">费内巴切(欧冠28) vs 斯拉维亚(欧冠31)</h4>
+      <span class="tag t-watch">合理 · 略偏深</span>
+      <span class="m-time">10-21 00:45</span>
+    </div>
 
-  <h3 class="block">AI 分析 <span class="hint">近况 · 交手记录 · 盘口 · 结论</span></h3>
-  <div class="table-wrap">
-    <table class="data ai">
-      <thead>
-        <tr>
-          <th>编号</th>
-          <th>对阵</th>
-          <th>近况 / 基本面</th>
-          <th>H2H 交手</th>
-          <th>盘口 / 伤停</th>
-          <th>结论</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="no">001</td>
-          <td class="match">费内巴切 vs 斯拉维亚</td>
-          <td class="txt">费内巴切欧冠 0胜1平1负（1 分，第 28）——主 1-1 罗马、客 0-6 阿斯顿维拉，欧冠已 9 场不胜；土超 4胜1平积 16 分。斯拉维亚欧冠 2 负 0 分（第 31）——主 2-3 朗斯、客 0-2 萨巴赫；捷甲领跑。</td>
-          <td class="txt">2021-22 欧会杯附加赛，斯拉维亚两回合均 3-2 胜费内巴切</td>
-          <td class="txt">亚盘主让一球 2.02/1.82（主水偏高），竞彩让 1 球与之对齐<span class="sub">伤停：费内巴切缺阿森西奥、米尔迪尔（膝）；斯拉维亚缺 5 人</span></td>
-          <td class="concl">主队欧冠 9 场不胜却被定价 1.50，联赛状态是主要支撑，<b>让 1 球基本合理但略偏深</b>；支持率 88%/6%/6% 中平局仅 6%，与模型 22.1% 的平局概率背离明显</td>
-        </tr>
-        <tr>
-          <td class="no">002</td>
-          <td class="match">萨巴赫 vs 多特蒙德</td>
-          <td class="txt">萨巴赫（阿塞拜疆球队，队史首次踢欧冠）1胜1负 3 分第 22——客 0-4 曼联、主 2-0 斯拉维亚；本国联赛主场全胜。多特蒙德 1胜1负 3 分第 18——胜比利亚雷亚尔、客 0-1 负博德闪耀；德甲近 2 轮连平（2-2 不来梅、0-0 柏林联）。</td>
-          <td class="txt">两队首次交手，无历史记录</td>
-          <td class="txt">亚盘主队受让球半/两球（+1.75），竞彩直接给到 <b>+2，深约 1/4 球</b><span class="sub">伤停：萨巴赫全员健康；多特缺卡雷察斯（踝）</span></td>
-          <td class="concl">多特客场让 2 球已超过亚盘的 1.75，且多特近 2 轮德甲连平、客场刚 0-1 负博德闪耀，<b>受让方萨巴赫 +2 有价值</b>；让球胜 1.90 需多特净胜 3 球，性价比一般</td>
-        </tr>
-        <tr>
-          <td class="no">004</td>
-          <td class="match">那不勒斯 vs 博德闪耀</td>
-          <td class="txt">那不勒斯欧冠 2 负 0 分第 32（客 1-3 比利亚雷亚尔）；意甲近 2 连败（0-1 威尼斯、1-2 亚特兰大）。博德闪耀 1胜1负 3 分第 24——主场 1-0 爆冷胜多特蒙德；挪超连捷、争冠火热。</td>
-          <td class="txt">现役首次交锋；唯一旧交为 1976-77 优胜者杯首轮，那不勒斯两回合双杀</td>
-          <td class="txt">亚盘主让一球 2.02/1.82（个别机构 2.05/1.76），竞彩让 1 球与之一致<span class="sub">伤停：那不勒斯缺阿利松·桑托斯、内雷斯、贝加拉；博德闪耀缺里斯奈斯、埃文、米克尔森</span></td>
-          <td class="concl">盘口与亚盘一致，但主队欧冠 0 分 + 意甲 2 连败、客队状态火热，<b>让 1 球偏深</b>；支持率 49%/9%/42% 显示客队受注不低，平局与受让方向有分歧空间</td>
-        </tr>
-        <tr>
-          <td class="no">005</td>
-          <td class="match">罗马 vs 布拉迪斯</td>
-          <td class="txt">罗马欧冠 1平1负 1 分第 25（客 1-1 费内巴切、主 3-4 皇马）；意甲 7 轮 5胜2平不败居第 2。布拉迪斯拉发欧冠 0 分垫底第 36（得失球 1-9，客 0-3 斯图加特）；斯洛伐克联赛第 4。</td>
-          <td class="txt">两队无正式交锋记录</td>
-          <td class="txt">亚盘两球半 2.00/1.85，竞彩让 2 球与市场对齐甚至浅半档<span class="sub">伤停：罗马缺迪巴拉（肌肉伤，约再缺 2 周）</span></td>
-          <td class="concl">竞彩让 2 球（1.86）与亚盘两球半水位（1.85）完全对齐，<b>盘口合理</b>；主队意甲状态强、客队欧冠垫底，让球方向明确</td>
-        </tr>
-        <tr>
-          <td class="no">006</td>
-          <td class="match">巴黎圣曼 vs 巴萨</td>
-          <td class="txt">两队欧冠 2 战全胜同积 6 分、净胜球同为 +7，巴黎以进球多（10-3）列第 1、巴萨（9-2）列第 2。巴黎法甲领跑（上轮客场 3-1 斯特拉斯堡）；巴萨西甲 9 战全胜创纪录、各项赛事 11 连胜共进 48 球。</td>
-          <td class="txt">欧战 16 次交手 6胜6负4平；近 5 次欧冠交锋巴黎 3胜1平1负略占优</td>
-          <td class="txt">亚盘平手 1.92/1.92，欧均 2.39/4.36/2.45，竞彩 2.26/4.30/2.20 基本吻合（客胜略压）<span class="sub">伤停：巴黎缺门德斯（大腿）、马尤卢；巴萨孔德、埃里克·加西亚、克里斯滕森三中卫同时缺阵，拉菲尼亚复出</span></td>
-          <td class="concl">榜首大战定价公允，<b>盘口合理</b>；总进球期望 4.02 球、大 2.5 球 76.6%，是今日 9 场中最强的高进球信号；让球 +1（巴黎受让）1.50 对应“巴黎不败”59.1% 隐含，与模型 59.8% 吻合</td>
-        </tr>
-        <tr>
-          <td class="no">007</td>
-          <td class="match">利物浦 vs 比利亚雷</td>
-          <td class="txt">利物浦欧冠 2 战全胜（6-3 拉纳卡、主 2-1 马竞）6 分列第 5；英超第 5（7 战 12 分），近 5 场 2-1 布伦特福德、6-3 拉纳卡、0-3 曼城、1-0 伯恩茅斯、3-1 热刺。比利亚雷亚尔欧冠 1胜1负 3 分列第 14；西甲近 5 场 0-0 埃尔切、3-1 那不勒斯、客 0-1 皇马、3-1 莱万特。</td>
-          <td class="txt">正式交锋 4 次全在欧战半决赛（2015-16 欧联、2021-22 欧冠），<b>利物浦 4 战全胜</b>，两回合分别 3-1、5-2 晋级</td>
-          <td class="txt">亚盘一球 1.85/2.00；欧均 1.51/4.57/5.58<span class="sub">伤停：利物浦缺弗林蓬、索博斯洛伊、布拉德利、莱奥尼、埃基蒂克（加克波、伊萨克回归）；比利亚雷亚尔缺布坎南、佩佩</span></td>
-          <td class="concl">竞彩主胜 1.34 明显低于欧均 1.51（国内更看好利物浦），让 1 球 2.04 与亚盘一球水位大体对齐，<b>盘口合理</b>；H2H 4 战全胜 + 客队伤兵，主胜基本面扎实，但主胜赔率已无价值</td>
-        </tr>
-        <tr>
-          <td class="no">008</td>
-          <td class="match">曼城 vs 雅典AEK</td>
-          <td class="txt">曼城英超 7 连胜居首（3-2 伊普斯维奇、客场 3-0 利物浦）；欧冠 1胜1负 3 分第 17（客 2-0 波尔图、主 2-4 巴黎）。雅典AEK 希超第 4；欧冠 1胜1负 3 分第 20（主 1-0 拉斯克、客 1-3 矿工），赛前休整一周。</td>
-          <td class="txt">两队首次交手</td>
-          <td class="txt">亚盘主让两球半/三球，竞彩让 2 球，<b>比亚盘浅约一档</b><span class="sub">伤停：曼城谢门约（膝）缺 8 周，哈兰德、奥赖利、努内斯缺席训练存疑；AEK 门将斯特拉科沙等伤缺</span></td>
-          <td class="concl">竞彩让 2 球（需净胜 3 球）比亚盘浅约一档，<b>盘口合理偏保守</b>；曼城状态火热但哈兰德伤情存疑是唯一变量</td>
-        </tr>
-        <tr>
-          <td class="no">009</td>
-          <td class="match">斯图加特 vs 马竞</td>
-          <td class="txt">斯图加特欧冠 2 连胜（3-1 维京、客 3-0 布拉迪斯拉发）6 分凭净胜球列第 4；但德甲仅第 13，近 5 场 2胜3负（0-1 汉堡、2-0 帕德博恩、0-1 多特）。马竞欧冠 1胜1负 3 分第 15（客 1-2 利物浦、主 2-0 曼联）；西甲第 2、近 5 场全胜。</td>
-          <td class="txt">两队首次正式交锋</td>
-          <td class="txt">亚盘主队受平手/半球（+0.25，2.02/1.82），竞彩给让球 +1（受让一球）<span class="sub">伤停：斯图加特阿尔-达希勒、扎加杜等后卫及迪尔、托马斯伤缺；马竞缺科克（大腿）、罗梅罗（肌拉伤）</span></td>
-          <td class="concl">竞彩受让一球 1.68 ≈“斯图加特不败”公允价，与亚盘仅小幅看客吻合，<b>盘口合理</b>；注意斯图加特欧冠排名高（第 4）但德甲状态差、马竞近 5 场全胜，两队欧冠/联赛走势相反</td>
-        </tr>
-        <tr>
-          <td class="no">010</td>
-          <td class="match">波尔图 vs 埃因霍温</td>
-          <td class="txt">波尔图欧冠 2 连败 0 分第 30（0-2 曼城、2-3 贝蒂斯）；葡超第 1，近 10 场 8胜2负。埃因霍温欧冠 1平1负 1 分第 26（1-1 矿工、0-1 莱比锡）；荷甲第 3，近 10 场 6胜1平3负。</td>
-          <td class="txt">无近期正式交锋（上次为 2016 友谊赛），无参考价值</td>
-          <td class="txt">亚盘主让一球 1.87/1.97（个别机构半球/一球），竞彩让 1 球与之一致<span class="sub">伤停：波尔图缺索萨、戈麦斯；埃因霍温伤兵严重（斯豪滕、纳加洛、西迪利亚、瓦纳、佩皮、普莱亚、拉默斯等多人）</span></td>
-          <td class="concl">盘口与亚盘一致，<b>合理</b>；埃因霍温大面积伤缺支撑波尔图，但波尔图自身欧冠 2 连败，主胜赔率 1.43 中性</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">1.50 / 4.00 / 4.70</dd></div>
+        <div><dt>让球盘 −1</dt><dd class="mono">2.49 / 3.60 / 2.22</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">一球（2.02 / 1.82）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">88 / 6 / 6</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">59.0 / 22.1 / 18.9</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">59.0 / 22.1 / 18.9</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">1:0 10.7% · 1:1 10.5% · 2:0 10.2% · 2:1 9.9% · 3:0 6.4%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">54.8%<span class="bar low"><i style="width:54.8%"></i></span></dd></div>
+      </dl>
+    </div>
 
-  <h3 class="block">总体结论（周二 261020）</h3>
-  <div class="table-wrap">
-    <table class="data summary">
-      <thead>
-        <tr>
-          <th>编号</th>
-          <th>对阵</th>
-          <th>判定</th>
-          <th>要点</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="no">001</td><td class="match">费内巴切 vs 斯拉维亚</td><td><span class="tag t-watch">合理略偏深</span></td><td class="note-cell">主队欧冠 9 场不胜 vs 让 1 球；平局支持率仅 6%</td></tr>
-        <tr><td class="no">002</td><td class="match">萨巴赫 vs 多特蒙德</td><td><span class="tag t-risk">客队让球偏深</span></td><td class="note-cell">竞彩 +2 深于亚盘 +1.75，多特近 2 轮德甲连平</td></tr>
-        <tr><td class="no">004</td><td class="match">那不勒斯 vs 博德闪耀</td><td><span class="tag t-risk">主队让球偏深</span></td><td class="note-cell">主队欧冠 0 分 + 意甲 2 连败，客队火热</td></tr>
-        <tr><td class="no">005</td><td class="match">罗马 vs 布拉迪斯</td><td><span class="tag t-ok">合理</span></td><td class="note-cell">让 2 球与亚盘两球半完全对齐</td></tr>
-        <tr><td class="no">006</td><td class="match">巴黎圣曼 vs 巴萨</td><td><span class="tag t-ok">合理</span></td><td class="note-cell">榜首大战定价公允，高进球信号最强</td></tr>
-        <tr><td class="no">007</td><td class="match">利物浦 vs 比利亚雷</td><td><span class="tag t-ok">合理</span></td><td class="note-cell">让球与亚盘对齐；竞彩主胜 1.34 低于欧均 1.51</td></tr>
-        <tr><td class="no">008</td><td class="match">曼城 vs 雅典AEK</td><td><span class="tag t-ok">合理偏保守</span></td><td class="note-cell">让 2 球比亚盘（两球半/三球）浅一档</td></tr>
-        <tr><td class="no">009</td><td class="match">斯图加特 vs 马竞</td><td><span class="tag t-ok">合理</span></td><td class="note-cell">受让一球 1.68 ≈ 斯图加特不败公允价</td></tr>
-        <tr><td class="no">010</td><td class="match">波尔图 vs 埃因霍温</td><td><span class="tag t-ok">合理</span></td><td class="note-cell">与亚盘一致；客队大面积伤缺</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>费内巴切欧冠 0胜1平1负（1 分，第 28）——主 1-1 罗马、客 0-6 阿斯顿维拉，欧冠已 9 场不胜；土超 4胜1平积 16 分。斯拉维亚欧冠 2 负 0 分（第 31）——主 2-3 朗斯、客 0-2 萨巴赫；捷甲领跑。</dd></div>
+        <div><dt>H2H</dt><dd>2021-22 欧会杯附加赛，斯拉维亚两回合均 3-2 胜费内巴切</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘主让一球 2.02/1.82（主水偏高），竞彩让 1 球与之对齐<span class="sub">伤停：费内巴切缺阿森西奥、米尔迪尔（膝）；斯拉维亚缺 5 人</span></dd></div>
+      </dl>
+    </div>
 
+    <div class="m-concl">
+      <p class="pt">主队欧冠 9 场不胜 vs 让 1 球；平局支持率仅 6%</p>
+      <p class="detail">主队欧冠 9 场不胜却被定价 1.50，联赛状态是主要支撑，<b>让 1 球基本合理但略偏深</b>；支持率 88%/6%/6% 中平局仅 6%，与模型 22.1% 的平局概率背离明显。</p>
+    </div>
+  </article>
+
+  <!-- 002 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">002</span>
+      <h4 class="m-title">萨巴赫(欧冠22) vs 多特蒙德(欧冠18)</h4>
+      <span class="tag t-risk">客队让球偏深</span>
+      <span class="m-time">10-21 00:45</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">8.05 / 5.60 / 1.21</dd></div>
+        <div><dt>让球盘 +2</dt><dd class="mono">1.90 / 4.17 / 2.75</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">受球半/两球（1.90 / 1.95）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">11 / 5 / 84</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">11.0 / 15.8 / 73.2</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">10.9 / 15.9 / 73.2</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">0:2 10.6% · 1:2 9.3% · 0:3 9.0% · 0:1 8.4% · 1:3 7.8%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">66.0%<span class="bar mid"><i style="width:66.0%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>萨巴赫（阿塞拜疆球队，队史首次踢欧冠）1胜1负 3 分第 22——客 0-4 曼联、主 2-0 斯拉维亚；本国联赛主场全胜。多特蒙德 1胜1负 3 分第 18——胜比利亚雷亚尔、客 0-1 负博德闪耀；德甲近 2 轮连平（2-2 不来梅、0-0 柏林联）。</dd></div>
+        <div><dt>H2H</dt><dd>两队首次交手，无历史记录</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘主队受让球半/两球（+1.75），竞彩直接给到 <b>+2，深约 1/4 球</b><span class="sub">伤停：萨巴赫全员健康；多特缺卡雷察斯（踝）</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">竞彩 +2 深于亚盘 +1.75，多特近 2 轮德甲连平</p>
+      <p class="detail">多特客场让 2 球已超过亚盘的 1.75，且多特近 2 轮德甲连平、客场刚 0-1 负博德闪耀，<b>受让方萨巴赫 +2 有价值</b>；让球胜 1.90 需多特净胜 3 球，性价比一般。</p>
+    </div>
+  </article>
+
+  <!-- 004 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">004</span>
+      <h4 class="m-title">那不勒斯(欧冠32) vs 博德闪耀(欧冠24)</h4>
+      <span class="tag t-risk">主队让球偏深</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">1.48 / 4.23 / 4.60</dd></div>
+        <div><dt>让球盘 −1</dt><dd class="mono">2.40 / 3.72 / 2.25</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">一球（2.02 / 1.82）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">49 / 9 / 42</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">59.8 / 20.9 / 19.2</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">59.9 / 20.9 / 19.2</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">2:1 9.9% · 1:1 9.7% · 2:0 9.2% · 1:0 9.0% · 3:1 6.8%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">60.4%<span class="bar mid"><i style="width:60.4%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>那不勒斯欧冠 2 负 0 分第 32（客 1-3 比利亚雷亚尔）；意甲近 2 连败（0-1 威尼斯、1-2 亚特兰大）。博德闪耀 1胜1负 3 分第 24——主场 1-0 爆冷胜多特蒙德；挪超连捷、争冠火热。</dd></div>
+        <div><dt>H2H</dt><dd>现役首次交锋；唯一旧交为 1976-77 优胜者杯首轮，那不勒斯两回合双杀</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘主让一球 2.02/1.82（个别机构 2.05/1.76），竞彩让 1 球与之一致<span class="sub">伤停：那不勒斯缺阿利松·桑托斯、内雷斯、贝加拉；博德闪耀缺里斯奈斯、埃文、米克尔森</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">主队欧冠 0 分 + 意甲 2 连败，客队火热</p>
+      <p class="detail">盘口与亚盘一致，但主队欧冠 0 分 + 意甲 2 连败、客队状态火热，<b>让 1 球偏深</b>；支持率 49%/9%/42% 显示客队受注不低，平局与受让方向有分歧空间。</p>
+    </div>
+  </article>
+
+  <!-- 005 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">005</span>
+      <h4 class="m-title">罗马(欧冠25) vs 布拉迪斯(欧冠36)</h4>
+      <span class="tag t-ok">合理</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div class="wide"><dt>胜平负</dt><dd class="mono">竞彩未开售 · 欧均 1.15 / 8.51 / 16.18</dd></div>
+        <div><dt>让球盘 −2</dt><dd class="mono">1.86 / 4.40 / 2.75</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">两球半（2.00 / 1.85）</dd></div>
+        <div><dt>支持率（让球盘）</dt><dd class="mono">72 / 19 / 9</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">82.9 / 11.2 / 5.9</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">82.9 / 11.3 / 5.8</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">2:0 11.2% · 3:0 11.1% · 4:0 8.3% · 2:1 7.8% · 3:1 7.8%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">71.1%<span class="bar"><i style="width:71.1%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>罗马欧冠 1平1负 1 分第 25（客 1-1 费内巴切、主 3-4 皇马）；意甲 7 轮 5胜2平不败居第 2。布拉迪斯拉发欧冠 0 分垫底第 36（得失球 1-9，客 0-3 斯图加特）；斯洛伐克联赛第 4。</dd></div>
+        <div><dt>H2H</dt><dd>两队无正式交锋记录</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘两球半 2.00/1.85，竞彩让 2 球与市场对齐甚至浅半档<span class="sub">伤停：罗马缺迪巴拉（肌肉伤，约再缺 2 周）</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">让 2 球与亚盘两球半完全对齐</p>
+      <p class="detail">竞彩让 2 球（1.86）与亚盘两球半水位（1.85）完全对齐，<b>盘口合理</b>；主队意甲状态强、客队欧冠垫底，让球方向明确。</p>
+    </div>
+  </article>
+
+  <!-- 006 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">006</span>
+      <h4 class="m-title">巴黎圣曼(欧冠1) vs 巴萨(欧冠2)</h4>
+      <span class="tag t-ok">合理</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">2.26 / 4.30 / 2.20</dd></div>
+        <div><dt>让球盘 +1</dt><dd class="mono">1.50 / 4.65 / 4.05</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">平手（1.92 / 1.92）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">35 / 17 / 48</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">39.2 / 20.6 / 40.2</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">39.2 / 20.6 / 40.2</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">1:2 7.3% · 2:2 7.3% · 1:1 7.2% · 2:1 7.2% · 1:3 4.9%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">76.6%<span class="bar"><i style="width:76.6%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>两队欧冠 2 战全胜同积 6 分、净胜球同为 +7，巴黎以进球多（10-3）列第 1、巴萨（9-2）列第 2。巴黎法甲领跑（上轮客场 3-1 斯特拉斯堡）；巴萨西甲 9 战全胜创纪录、各项赛事 11 连胜共进 48 球。</dd></div>
+        <div><dt>H2H</dt><dd>欧战 16 次交手 6胜6负4平；近 5 次欧冠交锋巴黎 3胜1平1负略占优</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘平手 1.92/1.92，欧均 2.39/4.36/2.45，竞彩 2.26/4.30/2.20 基本吻合（客胜略压）<span class="sub">伤停：巴黎缺门德斯（大腿）、马尤卢；巴萨孔德、埃里克·加西亚、克里斯滕森三中卫同时缺阵，拉菲尼亚复出</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">榜首大战定价公允，高进球信号最强</p>
+      <p class="detail">榜首大战定价公允，<b>盘口合理</b>；总进球期望 4.02 球、大 2.5 球 76.6%，是今日 9 场中最强的高进球信号；让球 +1（巴黎受让）1.50 对应“巴黎不败”59.1% 隐含，与模型 59.8% 吻合。</p>
+    </div>
+  </article>
+
+  <!-- 007 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">007</span>
+      <h4 class="m-title">利物浦(欧冠5) vs 比利亚雷(欧冠14)</h4>
+      <span class="tag t-ok">合理</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">1.34 / 4.67 / 5.90</dd></div>
+        <div><dt>让球盘 −1</dt><dd class="mono">2.04 / 3.78 / 2.67</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">一球（1.85 / 2.00）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">88 / 6 / 6</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">66.0 / 19.0 / 15.0</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">66.2 / 18.8 / 15.0</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">2:0 10.1% · 2:1 9.8% · 1:0 8.9% · 1:1 8.7% · 3:0 7.5%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">62.5%<span class="bar mid"><i style="width:62.5%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>利物浦欧冠 2 战全胜（6-3 拉纳卡、主 2-1 马竞）6 分列第 5；英超第 5（7 战 12 分），近 5 场 2-1 布伦特福德、6-3 拉纳卡、0-3 曼城、1-0 伯恩茅斯、3-1 热刺。比利亚雷亚尔欧冠 1胜1负 3 分列第 14；西甲近 5 场 0-0 埃尔切、3-1 那不勒斯、客 0-1 皇马、3-1 莱万特。</dd></div>
+        <div><dt>H2H</dt><dd>正式交锋 4 次全在欧战半决赛（2015-16 欧联、2021-22 欧冠），<b>利物浦 4 战全胜</b>，两回合分别 3-1、5-2 晋级</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘一球 1.85/2.00；欧均 1.51/4.57/5.58<span class="sub">伤停：利物浦缺弗林蓬、索博斯洛伊、布拉德利、莱奥尼、埃基蒂克（加克波、伊萨克回归）；比利亚雷亚尔缺布坎南、佩佩</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">让球与亚盘对齐；竞彩主胜 1.34 低于欧均 1.51</p>
+      <p class="detail">竞彩主胜 1.34 明显低于欧均 1.51（国内更看好利物浦），让 1 球 2.04 与亚盘一球水位大体对齐，<b>盘口合理</b>；H2H 4 战全胜 + 客队伤兵，主胜基本面扎实，但主胜赔率已无价值。</p>
+    </div>
+  </article>
+
+  <!-- 008 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">008</span>
+      <h4 class="m-title">曼城(欧冠17) vs 雅典AEK(欧冠20)</h4>
+      <span class="tag t-ok">合理 · 让球偏保守</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div class="wide"><dt>胜平负</dt><dd class="mono">竞彩未开售 · 欧均 1.11 / 10.00 / 21.05</dd></div>
+        <div><dt>让球盘 −2</dt><dd class="mono">1.60 / 4.40 / 3.61</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">两球半/三球（2.00 / 1.85）</dd></div>
+        <div><dt>支持率（让球盘）</dt><dd class="mono">79 / 14 / 7</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">85.9 / 9.5 / 4.5</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">85.9 / 9.5 / 4.6</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">3:0 11.5% · 2:0 10.8% · 4:0 9.2% · 3:1 7.6% · 2:1 7.1%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">74.0%<span class="bar"><i style="width:74.0%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>曼城英超 7 连胜居首（3-2 伊普斯维奇、客场 3-0 利物浦）；欧冠 1胜1负 3 分第 17（客 2-0 波尔图、主 2-4 巴黎）。雅典AEK 希超第 4；欧冠 1胜1负 3 分第 20（主 1-0 拉斯克、客 1-3 矿工），赛前休整一周。</dd></div>
+        <div><dt>H2H</dt><dd>两队首次交手</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘主让两球半/三球，竞彩让 2 球，<b>比亚盘浅约一档</b><span class="sub">伤停：曼城谢门约（膝）缺 8 周，哈兰德、奥赖利、努内斯缺席训练存疑；AEK 门将斯特拉科沙等伤缺</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">让 2 球比亚盘（两球半/三球）浅一档</p>
+      <p class="detail">竞彩让 2 球（需净胜 3 球）比亚盘浅约一档，<b>盘口合理偏保守</b>；曼城状态火热但哈兰德伤情存疑是唯一变量。</p>
+    </div>
+  </article>
+
+  <!-- 009 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">009</span>
+      <h4 class="m-title">斯图加特(欧冠4) vs 马竞(欧冠15)</h4>
+      <span class="tag t-ok">合理</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">3.00 / 3.70 / 1.90</dd></div>
+        <div><dt>让球盘 +1</dt><dd class="mono">1.68 / 3.90 / 3.60</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">受平手/半球（2.02 / 1.82）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">8 / 10 / 82</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">29.5 / 23.9 / 46.6</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">29.4 / 23.8 / 46.9</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">1:1 11.0% · 1:2 9.4% · 0:1 8.5% · 0:2 7.2% · 2:1 7.2%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">57.7%<span class="bar mid"><i style="width:57.7%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>斯图加特欧冠 2 连胜（3-1 维京、客 3-0 布拉迪斯拉发）6 分凭净胜球列第 4；但德甲仅第 13，近 5 场 2胜3负（0-1 汉堡、2-0 帕德博恩、0-1 多特）。马竞欧冠 1胜1负 3 分第 15（客 1-2 利物浦、主 2-0 曼联）；西甲第 2、近 5 场全胜。</dd></div>
+        <div><dt>H2H</dt><dd>两队首次正式交锋</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘主队受平手/半球（+0.25，2.02/1.82），竞彩给让球 +1（受让一球）<span class="sub">伤停：斯图加特阿尔-达希勒、扎加杜等后卫及迪尔、托马斯伤缺；马竞缺科克（大腿）、罗梅罗（肌拉伤）</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">受让一球 1.68 ≈ 斯图加特不败公允价</p>
+      <p class="detail">竞彩受让一球 1.68 ≈“斯图加特不败”公允价，与亚盘仅小幅看客吻合，<b>盘口合理</b>；注意斯图加特欧冠排名高（第 4）但德甲状态差、马竞近 5 场全胜，两队欧冠/联赛走势相反。</p>
+    </div>
+  </article>
+
+  <!-- 010 -->
+  <article class="match">
+    <div class="m-head">
+      <span class="m-no">010</span>
+      <h4 class="m-title">波尔图(欧冠30) vs 埃因霍温(欧冠26)</h4>
+      <span class="tag t-ok">合理</span>
+      <span class="m-time">10-21 03:00</span>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">赔率与概率</div>
+      <dl class="m-grid">
+        <div><dt>胜平负</dt><dd class="mono">1.43 / 4.35 / 5.00</dd></div>
+        <div><dt>让球盘 −1</dt><dd class="mono">2.25 / 3.70 / 2.42</dd></div>
+        <div><dt>亚洲盘</dt><dd class="mono">一球（1.87 / 1.97）</dd></div>
+        <div><dt>支持率（胜/平/负）</dt><dd class="mono">84 / 6 / 10</dd></div>
+        <div><dt>隐含概率（去水）</dt><dd class="mono">61.9 / 20.4 / 17.7</dd></div>
+        <div><dt>泊松模型概率</dt><dd class="mono">62.1 / 20.3 / 17.6</dd></div>
+        <div class="wide"><dt>最可能比分</dt><dd class="mono">2:1 9.9% · 2:0 9.7% · 1:1 9.5% · 1:0 9.2% · 3:1 7.0%</dd></div>
+        <div class="wide last-row"><dt>大 2.5 球</dt><dd class="mono">60.4%<span class="bar mid"><i style="width:60.4%"></i></span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-sec">
+      <div class="m-sec-t">AI 分析</div>
+      <dl class="m-list">
+        <div><dt>近况</dt><dd>波尔图欧冠 2 连败 0 分第 30（0-2 曼城、2-3 贝蒂斯）；葡超第 1，近 10 场 8胜2负。埃因霍温欧冠 1平1负 1 分第 26（1-1 矿工、0-1 莱比锡）；荷甲第 3，近 10 场 6胜1平3负。</dd></div>
+        <div><dt>H2H</dt><dd>无近期正式交锋（上次为 2016 友谊赛），无参考价值</dd></div>
+        <div><dt>盘口 / 伤停</dt><dd>亚盘主让一球 1.87/1.97（个别机构半球/一球），竞彩让 1 球与之一致<span class="sub">伤停：波尔图缺索萨、戈麦斯；埃因霍温伤兵严重（斯豪滕、纳加洛、西迪利亚、瓦纳、佩皮、普莱亚、拉默斯等多人）</span></dd></div>
+      </dl>
+    </div>
+
+    <div class="m-concl">
+      <p class="pt">与亚盘一致；客队大面积伤缺</p>
+      <p class="detail">盘口与亚盘一致，<b>合理</b>；埃因霍温大面积伤缺支撑波尔图，但波尔图自身欧冠 2 连败，主胜赔率 1.43 中性。</p>
+    </div>
+  </article>
+
+  <h3 class="block">整体回顾 <span class="hint">9 场横向要点</span></h3>
   <div class="keystats">
     <div class="kcard">
       <h4>整体贴合度</h4>
       <ul>
-        <li>今日 9 场全为欧冠联赛阶段，<em>整体定价与亚盘贴合度高于昨日</em>：9 场中 6 场判定“合理”，偏深集中在 001 / 002 / 004 三场。</li>
+        <li>今日 9 场全为欧冠联赛阶段，<em>整体定价与亚盘贴合度较高</em>：9 场中 6 场判定“合理”，偏深集中在 001 / 002 / 004 三场。</li>
         <li>偏深场次的共同点：都是“<b>纸面或排名更强、但近期状态相反</b>”——001 费内巴切欧冠 9 场不胜、002 多特德甲连平、004 那不勒斯欧冠 0 分 + 意甲 2 连败。</li>
         <li>这三场的受让方（斯拉维亚 +1、萨巴赫 +2、博德闪耀 +1）基本面价值高于赔率显示。</li>
       </ul>
@@ -597,7 +730,7 @@ footer .sources a{word-break:break-all}
     <h2>数据来源与口径</h2>
     <ol>
       <li id="cite-1">
-        <span class="src-title">中国竞彩官网（lottery.gov.cn），竞彩足球胜平负 / 让球胜平负官方赔率与支持率。 周二 261020 奖金更新时间 2026-10-19 20:42:03。</span>
+        <span class="src-title">中国竞彩官网（lottery.gov.cn），竞彩足球胜平负 / 让球胜平负官方赔率与支持率。周二 261020 奖金更新时间 2026-10-19 20:42:03。</span>
         <a class="src-url" href="https://www.lottery.gov.cn" target="_blank" rel="noopener">https://www.lottery.gov.cn</a>
       </li>
       <li id="cite-2">
